@@ -11,7 +11,7 @@ package autogestionestudiantil;
 import java.util.ArrayList;
 
 
-public class InscripcionMateria implements Evaluable {
+public class InscripcionMateria {
 
    
     private Materia materia;
