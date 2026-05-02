@@ -12,7 +12,7 @@ package autogestionestudiantil;
 
 import java.util.ArrayList;
 
-public class Estudiante extends PersonaAcademica implements Consultable {
+public class Estudiante extends PersonaAcademica implements Consultable{
 
     private String carrera;
     private int anioIngreso;
@@ -37,7 +37,50 @@ public class Estudiante extends PersonaAcademica implements Consultable {
     public ArrayList<InscripcionMateria> getMaterias() {
         return materias;
     }
+    
+     public void inscribirse(Materia m) {
 
+        // Validar duplicados
+        for (InscripcionMateria insc : materias) {
+            if (insc.getMateria().getCodigo().equals(m.getCodigo())) {
+                System.out.println("Ya estás inscripto en esta materia.");
+                return;
+            }
+        }
+
+        InscripcionMateria nueva = new InscripcionMateria(m);
+        materias.add(nueva);
+
+        System.out.println("Inscripción realizada.");
+    }
+
+    public void darDeBaja(String codigo) {
+
+        InscripcionMateria insc = getInscripcion(codigo);
+
+        if (insc != null) {
+            materias.remove(insc);
+            System.out.println("Materia eliminada.");
+        } else {
+            System.out.println("Materia no encontrada.");
+        }
+    }
+
+    public InscripcionMateria getInscripcion(String codigo) {
+
+        for (InscripcionMateria insc : materias) {
+            if (insc.getMateria().getCodigo().equalsIgnoreCase(codigo)) {
+                return insc;
+            }
+        }
+
+        return null;
+    }
+    
+    @Override
+    public void mostrarResumen() {
+    
+}
 
    
 }
