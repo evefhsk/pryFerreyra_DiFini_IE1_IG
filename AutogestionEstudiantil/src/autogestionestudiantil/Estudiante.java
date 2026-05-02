@@ -92,6 +92,21 @@ public class Estudiante extends PersonaAcademica implements Consultable{
         return suma / materias.size();
     }
     
+    public ArrayList<InscripcionMateria> getMateriasCriticas() {
+
+        ArrayList<InscripcionMateria> criticas = new ArrayList<>();
+
+        for (InscripcionMateria insc : materias) {
+            double asistencia = insc.getPorcentajeAsistencia();
+
+            if (asistencia >= 75 && asistencia <= 85) {
+                criticas.add(insc);
+            }
+        }
+
+        return criticas;
+    }
+    
     @Override
     public void mostrarResumen() {
     
