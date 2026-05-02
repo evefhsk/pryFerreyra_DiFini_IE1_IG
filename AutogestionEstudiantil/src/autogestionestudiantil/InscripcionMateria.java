@@ -64,19 +64,21 @@ public class InscripcionMateria  implements Evaluable {
 
     }
     
-    public void agregarNota(double nota) {
+    public boolean agregarNota(double nota) {
         if (nota < 0 || nota > 10) {
-            System.out.println(" Nota inválida. Debe estar entre 0 y 10.");
-            return;
+            System.out.println("Nota inválida. Debe estar entre 0 y 10.");
+            return false;
         }
 
         if (notas.size() >= 5) {
-            System.out.println(" No se pueden agregar más de 5 notas.");
-            return;
+            System.out.println("No se pueden agregar más de 5 notas.");
+            return false;
         }
 
         notas.add(nota);
+        return true;
     }
+
     
     public double getPromedio() {
         if (notas.isEmpty()) {
