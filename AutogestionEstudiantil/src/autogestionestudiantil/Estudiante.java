@@ -77,6 +77,21 @@ public class Estudiante extends PersonaAcademica implements Consultable{
         return null;
     }
     
+    public double getPromedioGeneral() {
+
+        if (materias.isEmpty()) {
+            return 0;
+        }
+
+        double suma = 0;
+
+        for (InscripcionMateria insc : materias) {
+            suma += insc.getPromedio();
+        }
+
+        return suma / materias.size();
+    }
+    
     @Override
     public void mostrarResumen() {
     
