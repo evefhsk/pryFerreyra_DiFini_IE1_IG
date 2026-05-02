@@ -77,8 +77,43 @@ public class Estudiante extends PersonaAcademica implements Consultable{
         return null;
     }
     
+    public double getPromedioGeneral() {
+
+        if (materias.isEmpty()) {
+            return 0;
+        }
+
+        double suma = 0;
+
+        for (InscripcionMateria insc : materias) {
+            suma += insc.getPromedio();
+        }
+
+        return suma / materias.size();
+    }
+    
+    public ArrayList<InscripcionMateria> getMateriasCriticas() {
+
+        ArrayList<InscripcionMateria> criticas = new ArrayList<>();
+
+        for (InscripcionMateria insc : materias) {
+            double asistencia = insc.getPorcentajeAsistencia();
+
+            if (asistencia >= 75 && asistencia <= 85) {
+                criticas.add(insc);
+            }
+        }
+
+        return criticas;
+    }
+    
     @Override
     public void mostrarResumen() {
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Legajo: " + getLegajo());
+        System.out.println("Carrera: " + carrera);
+        System.out.println("Año de ingreso: " + anioIngreso);
+        System.out.println("Promedio general: " + getPromedioGeneral());
     
 }
 
