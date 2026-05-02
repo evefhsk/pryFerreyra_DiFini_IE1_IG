@@ -11,7 +11,7 @@ package autogestionestudiantil;
 import java.util.ArrayList;
 
 
-public class InscripcionMateria implements Evaluable {
+public class InscripcionMateria {
 
    
     private Materia materia;
@@ -43,6 +43,26 @@ public class InscripcionMateria implements Evaluable {
         return notas;
     }
 
+    public void registrarAsistencia(boolean presente) {
+        totalClases++;
+
+        if (presente) {
+            clasesAsistidas++;
+        }
+    }
+    
+    public double getPorcentajeAsistencia() {
+        if (totalClases == 0) {
+            return 0;
+        }
+
+        return (clasesAsistidas * 100.0) / totalClases;
+    }
+    
+    public String getCondicion() {
+        return getPorcentajeAsistencia() >= 75 ? "Regular" : "Libre";
+
+    }
     
 
     
