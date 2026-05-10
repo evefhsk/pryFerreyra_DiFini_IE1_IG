@@ -11,7 +11,7 @@ package autogestionestudiantil;
 import java.util.ArrayList;
 
 
-public class InscripcionMateria {
+public class InscripcionMateria implements Rankeable{
 
    
     private Materia materia;
@@ -44,7 +44,25 @@ public class InscripcionMateria {
     }
 
     
+    //BONUS
+    //Para el cálculo de Puntaje ranking
+    @Override
+    public double getPuntajeRanking() {
 
+        double promedio = 0;
+
+        for (double n : notas) {
+            promedio += n;
+        }
+
+        promedio = (notas.size() > 0) ? promedio / notas.size() : 0;
+
+        double asistencia = (totalClases > 0)
+                ? (clasesAsistidas * 100.0 / totalClases)
+                : 0;
+
+        return (promedio * 0.6) + (asistencia * 0.4);
+    }
     
 }
 
