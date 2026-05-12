@@ -6,6 +6,7 @@ package autogestionestudiantil;
 
 import java.util.Scanner;
 
+
 public class AutogestionEstudiantil 
 {
     public static void main(String[] args) 
@@ -370,3 +371,4 @@ public class AutogestionEstudiantil
     
     
 } 
+
