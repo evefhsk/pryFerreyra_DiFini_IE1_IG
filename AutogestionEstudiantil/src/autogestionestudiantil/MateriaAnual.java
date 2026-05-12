@@ -81,6 +81,24 @@ public class MateriaAnual extends Materia
 
         return "Libre";
     }
+    
+    @Override
+    public void mostrarResumen() {
+
+        System.out.println("=== MATERIA ANUAL ===");
+
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Código: " + getCodigo());
+        System.out.println("Año: " + getAnio());
+
+        System.out.println("Promedio anual: " + getPromedioAnual());
+
+        System.out.println("Asistencia total: "
+                + getAsistenciaTotal());
+
+        System.out.println("Condición: "
+                + getCondicion());
+    }
 }
     
 
