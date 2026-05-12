@@ -121,7 +121,7 @@ public class Estudiante extends PersonaAcademica implements Consultable{
 
         return suma / materias.size();
     }
-    
+     
     public ArrayList<InscripcionMateria> getMateriasCriticas() {
 
         ArrayList<InscripcionMateria> criticas = new ArrayList<>();
