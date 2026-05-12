@@ -17,12 +17,14 @@ public class Estudiante extends PersonaAcademica implements Consultable{
     private String carrera;
     private int anioIngreso;
     private ArrayList<InscripcionMateria> materias;
-
+    private ArrayList<Materia> materiasPolimorfismo; //Nueva lista para el Bonus
+    
     public Estudiante(String nombre, String legajo, String carrera, int anioIngreso) {
         super(nombre, legajo);
         this.carrera = carrera;
         this.anioIngreso = anioIngreso;
         this.materias = new ArrayList<>();
+        this.materiasPolimorfismo = new ArrayList<>(); //Del Bonus
     }
 
 
@@ -77,8 +79,72 @@ public class Estudiante extends PersonaAcademica implements Consultable{
         return null;
     }
     
+
+    //PARTE DEL BONUS:
+    
+    //Agrega materia a la lista
+    public void agregarMateria(Materia m) 
+    {
+        materiasPolimorfismo.add(m);
+        System.out.println("Materia agregada"); 
+    }
+    
+    //Para buscar por codigo
+    public Materia buscarPorCodigo(String codigo) 
+    {
+        return buscarRecursivo(codigo, 0);
+    }
+    
+    private Materia buscarRecursivo(String codigo, int i) 
+    {
+        if (i >= materiasPolimorfismo.size()) {
+            return null;
+        }
+
+        if (materiasPolimorfismo.get(i).getCodigo().equalsIgnoreCase(codigo)) {
+            return materiasPolimorfismo.get(i);
+        }
+
+        return buscarRecursivo(codigo, i + 1);
+
+    public double getPromedioGeneral() {
+
+        if (materias.isEmpty()) {
+            return 0;
+        }
+
+        double suma = 0;
+
+        for (InscripcionMateria insc : materias) {
+            suma += insc.getPromedio();
+        }
+
+        return suma / materias.size();
+    }
+    
+    public ArrayList<InscripcionMateria> getMateriasCriticas() {
+
+        ArrayList<InscripcionMateria> criticas = new ArrayList<>();
+
+        for (InscripcionMateria insc : materias) {
+            double asistencia = insc.getPorcentajeAsistencia();
+
+            if (asistencia >= 75 && asistencia <= 85) {
+                criticas.add(insc);
+            }
+        }
+
+        return criticas;
+
+    }
+    
     @Override
     public void mostrarResumen() {
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Legajo: " + getLegajo());
+        System.out.println("Carrera: " + carrera);
+        System.out.println("Año de ingreso: " + anioIngreso);
+        System.out.println("Promedio general: " + getPromedioGeneral());
     
 }
 
