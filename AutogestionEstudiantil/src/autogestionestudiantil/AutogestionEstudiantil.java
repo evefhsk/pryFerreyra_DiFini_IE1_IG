@@ -201,8 +201,51 @@ public class AutogestionEstudiantil
                     System.out.print("AÑO: ");
                     int anio = sc.nextInt();
                     sc.nextLine();
+                    
+                    System.out.println("TIPO DE MATERIA:");
+                    System.out.println("1. Cuatrimestral");
+                    System.out.println("2. Anual");
+                    System.out.print("Opción: ");
 
-                    Materia nuevaMateria = new Materia(nombre, codigo, cuatrimestre, anio);
+                    int tipoMateria = sc.nextInt();
+                    sc.nextLine();
+
+                    Materia nuevaMateria;
+
+                    if (tipoMateria == 2) {
+
+                        MateriaAnual anual = new MateriaAnual(
+                                nombre,
+                                codigo,
+                                anio
+                        );
+
+                        System.out.print("Nota 1° cuatrimestre: ");
+                        anual.setNotaPrimerCuatrimestre(sc.nextDouble());
+
+                        System.out.print("Nota 2° cuatrimestre: ");
+                        anual.setNotaSegundoCuatrimestre(sc.nextDouble());
+
+                        System.out.print("Asistencia 1° cuatrimestre: ");
+                        anual.setAsistenciaPrimerCuatrimestre(sc.nextDouble());
+
+                        System.out.print("Asistencia 2° cuatrimestre: ");
+                        anual.setAsistenciaSegundoCuatrimestre(sc.nextDouble());
+
+                        sc.nextLine();
+
+                        nuevaMateria = anual;
+
+                    } else {
+
+                        nuevaMateria = new Materia(
+                                nombre,
+                                codigo,
+                                cuatrimestre,
+                                anio
+                        );
+                    }
+
                     alumno.inscribirse(nuevaMateria);
 
                     System.out.println("Materia registrada correctamente:");
