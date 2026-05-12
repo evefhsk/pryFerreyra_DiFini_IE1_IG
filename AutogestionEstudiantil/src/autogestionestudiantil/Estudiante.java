@@ -106,7 +106,6 @@ public class Estudiante extends PersonaAcademica implements Consultable{
         }
 
         return buscarRecursivo(codigo, i + 1);
-    } 
 
     public double getPromedioGeneral() {
 
