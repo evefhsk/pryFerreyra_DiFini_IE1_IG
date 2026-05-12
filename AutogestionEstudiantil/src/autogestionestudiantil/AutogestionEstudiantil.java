@@ -51,7 +51,7 @@ public class AutogestionEstudiantil
         //Calcula sobre esas notas el puntake ranking
         System.out.println("Puntaje ranking: " + ins.getPuntajeRanking());
 
-        
+         
         
         int opcion;
 
