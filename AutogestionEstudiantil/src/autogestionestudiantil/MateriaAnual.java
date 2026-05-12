@@ -25,6 +25,62 @@ public class MateriaAnual extends Materia
 
         this.asistenciaPrimerCuatrimestre = 0;
         this.asistenciaSegundoCuatrimestre = 0;
+    }
+    
+    public double getNotaPrimerCuatrimestre() {
+        return notaPrimerCuatrimestre;
+    }
+
+    public void setNotaPrimerCuatrimestre(double notaPrimerCuatrimestre) {
+        this.notaPrimerCuatrimestre = notaPrimerCuatrimestre;
+    }
+
+    public double getNotaSegundoCuatrimestre() {
+        return notaSegundoCuatrimestre;
+    }
+
+    public void setNotaSegundoCuatrimestre(double notaSegundoCuatrimestre) {
+        this.notaSegundoCuatrimestre = notaSegundoCuatrimestre;
+    }
+
+    public double getAsistenciaPrimerCuatrimestre() {
+        return asistenciaPrimerCuatrimestre;
+    }
+
+    public void setAsistenciaPrimerCuatrimestre(double asistenciaPrimerCuatrimestre) {
+        this.asistenciaPrimerCuatrimestre = asistenciaPrimerCuatrimestre;
+    }
+
+    public double getAsistenciaSegundoCuatrimestre() {
+        return asistenciaSegundoCuatrimestre;
+    }
+
+    public void setAsistenciaSegundoCuatrimestre(double asistenciaSegundoCuatrimestre) {
+        this.asistenciaSegundoCuatrimestre = asistenciaSegundoCuatrimestre;
+    }
+
+
+    public double getPromedioAnual() {
+
+        return (notaPrimerCuatrimestre
+                + notaSegundoCuatrimestre) / 2;
+    }
+
+    public double getAsistenciaTotal() {
+
+        return (asistenciaPrimerCuatrimestre
+                + asistenciaSegundoCuatrimestre) / 2;
+    }
+
+
+    public String getCondicion() {
+
+        if (getAsistenciaTotal() >= 70) {
+            return "Regular";
+        }
+
+        return "Libre";
+    }
 }
     
 
