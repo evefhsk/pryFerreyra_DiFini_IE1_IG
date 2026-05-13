@@ -6,14 +6,14 @@ El sistema permite gestionar materias, asistencias, calificaciones y reportes ac
 
 ---
 
-# Integrantes
+## Integrantes
 
 * Eve
 * Zaira
 
 ---
 
-# Tecnologías utilizadas
+## Tecnologías utilizadas
 
 * Java JDK 21
 * Apache NetBeans 29
@@ -22,7 +22,7 @@ El sistema permite gestionar materias, asistencias, calificaciones y reportes ac
 
 ---
 
-# Conceptos aplicados
+## Conceptos aplicados
 
 * Clases y objetos
 * Herencia
@@ -34,34 +34,28 @@ El sistema permite gestionar materias, asistencias, calificaciones y reportes ac
 
 ---
 
-# Funcionalidades principales
+## Funcionalidades principales
 
-## Gestión de materias
+### Gestión de materias
 
 * Inscripción a materias
 * Baja de materias
 * Validación de duplicados
 
----
-
-## Gestión de asistencias
+### Gestión de asistencias
 
 * Registro de asistencia
 * Cálculo de porcentaje de asistencia
 * Determinación de condición académica
 
----
-
-## Gestión de calificaciones
+### Gestión de calificaciones
 
 * Registro de notas
 * Validación de notas
 * Cálculo de promedio
 * Verificación de aprobación
 
----
-
-## Reportes académicos
+### Reportes académicos
 
 * Promedio general
 * Estado académico
@@ -70,7 +64,7 @@ El sistema permite gestionar materias, asistencias, calificaciones y reportes ac
 
 ---
 
-# Extras implementados
+## Extras implementados
 
 * Validaciones de ingreso de datos
 * Reintento de carga de notas inválidas
@@ -81,12 +75,12 @@ El sistema permite gestionar materias, asistencias, calificaciones y reportes ac
 
 ---
 
-# Ejecución del proyecto
+## Ejecución del proyecto
 
 1. Abrir el proyecto en NetBeans
 2. Ejecutar:
 
-```text
+```
 AutogestionEstudiantil.java
 ```
 
@@ -94,7 +88,7 @@ AutogestionEstudiantil.java
 
 ---
 
-# Organización del desarrollo
+## Organización del desarrollo
 
 El proyecto fue desarrollado utilizando ramas para separar funcionalidades y mantener un trabajo colaborativo organizado.
 
@@ -106,34 +100,24 @@ Se trabajó principalmente con:
 
 ---
 
-# Documentación adicional
+## Documentación adicional
 
-## Organización del proyecto y ramas
-
-[Ver documentación en Google Docs](https://docs.google.com/document/d/15O0-jTpaOlWS_dvmC2hulmu15WJaayvSS5-5xrfmIOI/edit?usp=sharing)
-
----
-
-## Prompts y asistencia de IA utilizados
-
-[Ver prompts utilizados en Google Docs](https://docs.google.com/document/d/1qbmxG3RfCEnv-O8XNa5V2twM0WRXgZG-X41KZo1kLOw/edit?usp=sharing)
+| Recurso | Enlace |
+|---------|--------|
+| **Organización del proyecto y ramas** | [Acceder](https://docs.google.com/document/d/15O0-jTpaOlWS_dvmC2hulmu15WJaayvSS5-5xrfmIOI/edit?usp=sharing){:target="_blank"} |
+| **Prompts y asistencia de IA** | [Acceder](https://docs.google.com/document/d/1qbmxG3RfCEnv-O8XNa5V2twM0WRXgZG-X41KZo1kLOw/edit?usp=sharing){:target="_blank"} |
+| **Videos del proyecto** | [Acceder](https://drive.google.com/drive/folders/1CsxPN_l5C8XK7roYLr_19xKilGyZ_Te3?usp=sharing){:target="_blank"} |
 
 ---
 
-## Drive dónde se encuentran los videos
-
-[Acceder a Google Drive](https://drive.google.com/drive/folders/1CsxPN_l5C8XK7roYLr_19xKilGyZ_Te3?usp=sharing)
-
----
-
-# Uso de Inteligencia Artificial
+## Uso de Inteligencia Artificial
 
 Se utilizó inteligencia artificial como herramienta de apoyo para:
 
-* resolución de dudas técnicas
-* comprensión de GitHub y ramas
-* validaciones
-* organización del proyecto
-* optimización del código
+* Resolución de dudas técnicas
+* Comprensión de GitHub y ramas
+* Validaciones
+* Organización del proyecto
+* Optimización del código
 
 La implementación final y adaptación del sistema fue realizada manualmente por las integrantes del proyecto.
