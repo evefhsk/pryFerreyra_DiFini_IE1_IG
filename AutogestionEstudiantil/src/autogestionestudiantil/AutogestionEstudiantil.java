@@ -67,6 +67,13 @@ public class AutogestionEstudiantil
             System.out.println("-------------");
 
             System.out.print("Opcion: ");
+            while (!sc.hasNextInt())
+            {
+                System.out.println("Opción inválida.");
+                sc.nextLine();
+                System.out.print("Opcion: ");
+            }
+
             opcion = sc.nextInt();
             sc.nextLine();
 
@@ -85,25 +92,42 @@ public class AutogestionEstudiantil
 
                 case 3:
                     System.out.print("Codigo materia: ");
-                    String codA = sc.nextLine();
+                        String codA = sc.nextLine();
 
-                    InscripcionMateria inscA = alumno.getInscripcion(codA);
+                        InscripcionMateria inscA = alumno.getInscripcion(codA);
 
-                    if (inscA != null) {
-                    System.out.print("Presente? (true/false): ");
-                    boolean presente = sc.nextBoolean();
-                    sc.nextLine();
+                        if (inscA != null)
+                        {
+                            System.out.print("Presente? (s/n): ");
+                            String asistencia = sc.nextLine().toLowerCase();
 
-                    inscA.registrarAsistencia(presente);
-                    System.out.println("Asistencia registrada.");
-                    } 
-                    else {
-                        System.out.println("Materia no encontrada.");
-                    }
-                    
-                    volverMenu(alumno, sc);
+                            boolean presente;
 
-                    break;
+                            if (asistencia.equals("s"))
+                            {
+                                presente = true;
+                            }
+                            else if (asistencia.equals("n"))
+                            {
+                                presente = false;
+                            }
+                            else
+                            {
+                                System.out.println("Opción inválida.");
+                                break;
+                            }
+
+                            inscA.registrarAsistencia(presente);
+                            System.out.println("Asistencia registrada.");
+                        }
+                        else
+                        {
+                            System.out.println("Materia no encontrada.");
+                        }
+
+                        volverMenu(alumno, sc);
+
+                        break;
 
                 case 4:
                     System.out.print("Codigo materia: ");
@@ -111,26 +135,46 @@ public class AutogestionEstudiantil
 
                     InscripcionMateria inscN = alumno.getInscripcion(codN);
 
-                    if (inscN != null) {
-                        
+                    if (inscN != null)
+                    {
                         boolean cargada;
-                        
-                        do {
-                            System.out.print("Nota: ");
-                            double nota = sc.nextDouble();
-                            sc.nextLine();
+
+                        do
+                        {
+                            double nota;
+
+                            do
+                            {
+                                while (!sc.hasNextDouble())
+                                {
+                                    System.out.println("Ingrese una nota válida.");
+                                    sc.nextLine();
+                                }
+
+                                System.out.print("Nota: ");
+                                nota = sc.nextDouble();
+                                sc.nextLine();
+
+                                if (nota < 0 || nota > 10)
+                                {
+                                    System.out.println("La nota debe estar entre 0 y 10.");
+                                }
+
+                            } while (nota < 0 || nota > 10);
 
                             cargada = inscN.agregarNota(nota);
 
                         } while (!cargada);
 
                         System.out.println("Nota registrada.");
-                    } 
-                    else {
+                    }
+                    else
+                    {
                         System.out.println("Materia no encontrada.");
                     }
-                    
+
                     volverMenu(alumno, sc);
+
                     break;
 
                 case 5:
@@ -200,8 +244,27 @@ public class AutogestionEstudiantil
                     System.out.println("2. Materia anual");
                     System.out.print("Opción: ");
 
-                    int tipoMateria = sc.nextInt();
-                    sc.nextLine();
+                    int tipoMateria;
+
+                    do
+                    {
+                        while (!sc.hasNextInt())
+                        {
+                            System.out.println("Ingrese una opción válida.");
+                            sc.nextLine();
+                        }
+
+                        System.out.print("Opción: ");
+                        tipoMateria = sc.nextInt();
+                        sc.nextLine();
+
+                        if (tipoMateria != 1 && tipoMateria != 2)
+                        {
+                            System.out.println("Debe elegir 1 o 2.");
+                        }
+
+                    } 
+                    while (tipoMateria != 1 && tipoMateria != 2); 
 
                     System.out.println("Inscribirse a una materia:");
 
@@ -233,24 +296,100 @@ public class AutogestionEstudiantil
 
                     // MATERIA ANUAL
                     if (tipoMateria == 2)
-                    {
+{
                         MateriaAnual anual = new MateriaAnual(
                                 nombre,
                                 codigo,
                                 anio
                         );
 
-                        System.out.print("Nota 1° cuatrimestre: ");
-                        anual.setNotaPrimerCuatrimestre(sc.nextDouble());
+                        double nota1;
 
-                        System.out.print("Nota 2° cuatrimestre: ");
-                        anual.setNotaSegundoCuatrimestre(sc.nextDouble());
+                        do
+                        {
+                            while (!sc.hasNextDouble())
+                            {
+                                System.out.println("Ingrese una nota válida.");
+                                sc.nextLine();
+                            }
 
-                        System.out.print("Asistencia 1° cuatrimestre: ");
-                        anual.setAsistenciaPrimerCuatrimestre(sc.nextDouble());
+                            System.out.print("Nota 1° cuatrimestre: ");
+                            nota1 = sc.nextDouble();
 
-                        System.out.print("Asistencia 2° cuatrimestre: ");
-                        anual.setAsistenciaSegundoCuatrimestre(sc.nextDouble());
+                            if (nota1 < 0 || nota1 > 10)
+                            {
+                                System.out.println("La nota debe estar entre 0 y 10.");
+                            }
+
+                        } while (nota1 < 0 || nota1 > 10);
+
+                        anual.setNotaPrimerCuatrimestre(nota1);
+
+                        double nota2;
+
+                        do
+                        {
+                            while (!sc.hasNextDouble())
+                            {
+                                System.out.println("Ingrese una nota válida.");
+                                sc.nextLine();
+                            }
+
+                            System.out.print("Nota 2° cuatrimestre: ");
+                            nota2 = sc.nextDouble();
+
+                            if (nota2 < 0 || nota2 > 10)
+                            {
+                                System.out.println("La nota debe estar entre 0 y 10.");
+                            }
+
+                        } while (nota2 < 0 || nota2 > 10);
+
+                        anual.setNotaSegundoCuatrimestre(nota2);
+
+                        double asistencia1;
+
+                        do
+                        {
+                            while (!sc.hasNextDouble())
+                            {
+                                System.out.println("Ingrese un porcentaje válido.");
+                                sc.nextLine();
+                            }
+
+                            System.out.print("Asistencia 1° cuatrimestre: ");
+                            asistencia1 = sc.nextDouble();
+
+                            if (asistencia1 < 0 || asistencia1 > 100)
+                            {
+                                System.out.println("La asistencia debe estar entre 0 y 100.");
+                            }
+
+                        } while (asistencia1 < 0 || asistencia1 > 100);
+
+                        anual.setAsistenciaPrimerCuatrimestre(asistencia1);
+
+                        double asistencia2;
+
+                        do
+                        {
+                            while (!sc.hasNextDouble())
+                            {
+                                System.out.println("Ingrese un porcentaje válido.");
+                                sc.nextLine();
+                            }
+
+                            System.out.print("Asistencia 2° cuatrimestre: ");
+                            asistencia2 = sc.nextDouble();
+
+                            if (asistencia2 < 0 || asistencia2 > 100)
+                            {
+                                System.out.println("La asistencia debe estar entre 0 y 100.");
+                            }
+
+                        } while (asistencia2 < 0 || asistencia2 > 100);
+
+                        anual.setAsistenciaSegundoCuatrimestre(asistencia2);
 
                         sc.nextLine();
 
@@ -331,7 +470,15 @@ public class AutogestionEstudiantil
 
                             System.out.println("Materia: " + mat.getNombre());
                             System.out.println("Código: " + mat.getCodigo());
-                            System.out.println("Cuatrimestre: " + mat.getCuatrimestre());
+                            
+                            if (mat instanceof MateriaAnual)
+                            {
+                                System.out.println("Tipo: Materia anual");
+                            }
+                            else
+                            {
+                                System.out.println("Cuatrimestre: " + mat.getCuatrimestre());
+}
                             System.out.println("Año: " + mat.getAnio());
                             System.out.println("Asistencia: " + insc.getPorcentajeAsistencia() + "%");
                             System.out.println("Promedio: " + insc.getPromedio());
@@ -426,7 +573,8 @@ public class AutogestionEstudiantil
 
         for (InscripcionMateria insc : alumno.getMaterias()) {
             // Verifica si el código ingresado está contenido en el código de la materia
-            if (insc.getMateria().getCodigo().toLowerCase().contains(codigo.toLowerCase().trim())) {
+            if (insc.getMateria().getCodigo() != null &&
+                insc.getMateria().getCodigo().toLowerCase().contains(codigo.toLowerCase().trim())){
                 Materia mat = insc.getMateria();
 
                 System.out.println("Materia encontrada:");
