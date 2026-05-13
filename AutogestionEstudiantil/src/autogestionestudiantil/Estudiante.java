@@ -148,7 +148,27 @@ public class Estudiante extends PersonaAcademica implements Consultable{
         System.out.println("Año de ingreso: " + anioIngreso);
         System.out.println("Promedio general: " + getPromedioGeneral());
     
-}
+        System.out.println("\n=== RANKING DE MATERIAS ===");
+
+        for (int i = 0; i < materias.size(); i++) {
+
+            for (int j = i + 1; j < materias.size(); j++) {
+
+                if (materias.get(i).getPuntajeRanking() < materias.get(j).getPuntajeRanking()) {
+
+                    InscripcionMateria aux = materias.get(i);
+                    materias.set(i, materias.get(j));
+                    materias.set(j, aux);
+                }
+            } 
+
+            System.out.println(
+                    materias.get(i).getMateria().getNombre()
+                    + " | Puntaje: "
+                    + materias.get(i).getPuntajeRanking()
+            );
+        }
+    }
 
    
 }
