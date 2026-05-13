@@ -16,7 +16,7 @@ El sistema permite gestionar materias, asistencias, calificaciones y reportes ac
 ## Tecnologías utilizadas
 
 * Java JDK 21
-* Apache NetBeans 29
+* Apache NetBeans 29 y 28
 * GitHub
 * GitHub Desktop
 
@@ -107,7 +107,7 @@ Se trabajó principalmente con:
 | **Organización del proyecto y ramas** | <a href="https://docs.google.com/document/d/15O0-jTpaOlWS_dvmC2hulmu15WJaayvSS5-5xrfmIOI/edit?usp=sharing" target="_blank">Acceder</a> |
 | **Prompts y asistencia de IA** | <a href="https://docs.google.com/document/d/1qbmxG3RfCEnv-O8XNa5V2twM0WRXgZG-X41KZo1kLOw/edit?usp=sharing" target="_blank">Acceder</a> |
 | **Videos del proyecto** | <a href="https://drive.google.com/drive/folders/1CsxPN_l5C8XK7roYLr_19xKilGyZ_Te3?usp=sharing" target="_blank">Acceder</a> |
-
+| **Prueba y error** | <a href="https://docs.google.com/document/d/1d9KA45q56Z4IwyZb8adMk4WXlpC06BE8EpdP_FRmfME/edit?usp=sharing">Acceder</a> |
 ---
 
 ## Uso de Inteligencia Artificial
