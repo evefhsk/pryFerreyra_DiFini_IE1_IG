@@ -15,8 +15,8 @@ El sistema permite gestionar materias, asistencias, calificaciones y reportes ac
 
 # Tecnologías utilizadas
 
-* Java
-* NetBeans
+* Java JDK 21
+* Apache NetBeans 29
 * GitHub
 * GitHub Desktop
 
