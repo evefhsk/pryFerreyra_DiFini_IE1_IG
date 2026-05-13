@@ -59,12 +59,13 @@ public class InscripcionMateria implements Evaluable, Rankeable {
         promedio = (notas.size() > 0) ? promedio / notas.size() : 0;
 
         double asistencia = (totalClases > 0)
-                ? (clasesAsistidas * 100.0 / totalClases)
-                : 0;
+                ? (clasesAsistidas * 100.0 / totalClases) : 0;
+
+        asistencia = asistencia / 10;
 
         return (promedio * 0.6) + (asistencia * 0.4);
     }
-
+    
     public void registrarAsistencia(boolean presente) {
         totalClases++;
 
