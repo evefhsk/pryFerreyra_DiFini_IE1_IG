@@ -104,9 +104,9 @@ Se trabajó principalmente con:
 
 | Recurso | Enlace |
 |---------|--------|
-| **Organización del proyecto y ramas** | [Acceder](https://docs.google.com/document/d/15O0-jTpaOlWS_dvmC2hulmu15WJaayvSS5-5xrfmIOI/edit?usp=sharing){:target="_blank"} |
-| **Prompts y asistencia de IA** | [Acceder](https://docs.google.com/document/d/1qbmxG3RfCEnv-O8XNa5V2twM0WRXgZG-X41KZo1kLOw/edit?usp=sharing){:target="_blank"} |
-| **Videos del proyecto** | [Acceder](https://drive.google.com/drive/folders/1CsxPN_l5C8XK7roYLr_19xKilGyZ_Te3?usp=sharing){:target="_blank"} |
+| **Organización del proyecto y ramas** | <a href="https://docs.google.com/document/d/15O0-jTpaOlWS_dvmC2hulmu15WJaayvSS5-5xrfmIOI/edit?usp=sharing" target="_blank">Acceder</a> |
+| **Prompts y asistencia de IA** | <a href="https://docs.google.com/document/d/1qbmxG3RfCEnv-O8XNa5V2twM0WRXgZG-X41KZo1kLOw/edit?usp=sharing" target="_blank">Acceder</a> |
+| **Videos del proyecto** | <a href="https://drive.google.com/drive/folders/1CsxPN_l5C8XK7roYLr_19xKilGyZ_Te3?usp=sharing" target="_blank">Acceder</a> |
 
 ---
 
