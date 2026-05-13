@@ -242,8 +242,7 @@ public class AutogestionEstudiantil
                     System.out.println("TIPO DE INSCRIPCIÓN:");
                     System.out.println("1. Materia cuatrimestral");
                     System.out.println("2. Materia anual");
-                    System.out.print("Opción: ");
-
+                   
                     int tipoMateria;
 
                     do
@@ -288,9 +287,26 @@ public class AutogestionEstudiantil
                         break;
                     }
 
-                    System.out.print("AÑO: ");
-                    int anio = sc.nextInt();
-                    sc.nextLine();
+                    int anio;
+
+                    do
+                    {
+                        while (!sc.hasNextInt())
+                        {
+                            System.out.println("Ingrese un año válido.");
+                            sc.nextLine();
+                        }
+
+                        System.out.print("AÑO: ");
+                        anio = sc.nextInt();
+                        sc.nextLine();
+
+                        if (anio <= 0)
+                        {
+                            System.out.println("El año debe ser mayor a 0.");
+                        }
+
+                    } while (anio <= 0);
 
                     Materia nuevaMateria;
 
@@ -551,7 +567,14 @@ public class AutogestionEstudiantil
                 System.out.println("Materia encontrada:");
                 System.out.println("Materia: " + mat.getNombre());
                 System.out.println("Código: " + mat.getCodigo());
-                System.out.println("Cuatrimestre: " + mat.getCuatrimestre());
+                if (mat instanceof MateriaAnual)
+                {
+                    System.out.println("Tipo: Materia anual");
+                }
+                else
+                {
+                    System.out.println("Cuatrimestre: " + mat.getCuatrimestre());
+}
                 System.out.println("Año: " + mat.getAnio());
                 System.out.println("Asistencia: " + insc.getPorcentajeAsistencia() + "%");
                 System.out.println("Promedio: " + insc.getPromedio());
@@ -580,7 +603,14 @@ public class AutogestionEstudiantil
                 System.out.println("Materia encontrada:");
                 System.out.println("Materia: " + mat.getNombre());
                 System.out.println("Código: " + mat.getCodigo());
-                System.out.println("Cuatrimestre: " + mat.getCuatrimestre());
+                if (mat instanceof MateriaAnual)
+                {
+                    System.out.println("Tipo: Materia anual");
+                }
+                else
+                {
+                    System.out.println("Cuatrimestre: " + mat.getCuatrimestre());
+}
                 System.out.println("Año: " + mat.getAnio());
                 System.out.println("Asistencia: " + insc.getPorcentajeAsistencia() + "%");
                 System.out.println("Promedio: " + insc.getPromedio());
