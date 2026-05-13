@@ -86,7 +86,7 @@ El sistema permite gestionar materias, asistencias, calificaciones y reportes ac
 1. Abrir el proyecto en NetBeans
 2. Ejecutar:
 
-```text id="1k7a8l"
+```text
 AutogestionEstudiantil.java
 ```
 
@@ -110,25 +110,19 @@ Se trabajó principalmente con:
 
 ## Organización del proyecto y ramas
 
-```md id="ux0ebx"
-https://docs.google.com/document/d/15O0-jTpaOlWS_dvmC2hulmu15WJaayvSS5-5xrfmIOI/edit?usp=sharing
-```
+[Ver documentación en Google Docs](https://docs.google.com/document/d/15O0-jTpaOlWS_dvmC2hulmu15WJaayvSS5-5xrfmIOI/edit?usp=sharing)
 
 ---
 
 ## Prompts y asistencia de IA utilizados
 
-```md id="jlwm0r"
-https://docs.google.com/document/d/1qbmxG3RfCEnv-O8XNa5V2twM0WRXgZG-X41KZo1kLOw/edit?usp=sharing
-```
+[Ver prompts utilizados en Google Docs](https://docs.google.com/document/d/1qbmxG3RfCEnv-O8XNa5V2twM0WRXgZG-X41KZo1kLOw/edit?usp=sharing)
 
 ---
 
-## Drive dónde sen encuentran los videos
+## Drive dónde se encuentran los videos
 
-```
-https://drive.google.com/drive/folders/1CsxPN_l5C8XK7roYLr_19xKilGyZ_Te3?usp=sharing
-```
+[Acceder a Google Drive](https://drive.google.com/drive/folders/1CsxPN_l5C8XK7roYLr_19xKilGyZ_Te3?usp=sharing)
 
 ---
 
