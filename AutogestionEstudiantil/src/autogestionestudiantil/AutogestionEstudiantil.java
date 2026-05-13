@@ -91,109 +91,156 @@ public class AutogestionEstudiantil
                     break; 
 
                 case 3:
-                    System.out.print("Codigo materia: ");
+                     InscripcionMateria inscA = null;
+
+                    do
+                    {
+                        System.out.print("Codigo materia (E para volver): ");
                         String codA = sc.nextLine();
 
-                        InscripcionMateria inscA = alumno.getInscripcion(codA);
-
-                        if (inscA != null)
+                        if (codA.equalsIgnoreCase("E"))
                         {
-                            System.out.print("Presente? (s/n): ");
-                            String asistencia = sc.nextLine().toLowerCase();
-
-                            boolean presente;
-
-                            if (asistencia.equals("s"))
-                            {
-                                presente = true;
-                            }
-                            else if (asistencia.equals("n"))
-                            {
-                                presente = false;
-                            }
-                            else
-                            {
-                                System.out.println("Opción inválida.");
-                                break;
-                            }
-
-                            inscA.registrarAsistencia(presente);
-                            System.out.println("Asistencia registrada.");
+                            break;
                         }
-                        else
+
+                        inscA = alumno.getInscripcion(codA);
+
+                        if (inscA == null)
                         {
                             System.out.println("Materia no encontrada.");
                         }
 
-                        volverMenu(alumno, sc);
+                    } while (inscA == null);
 
-                        break;
-
-                case 4:
-                    System.out.print("Codigo materia: ");
-                    String codN = sc.nextLine();
-
-                    InscripcionMateria inscN = alumno.getInscripcion(codN);
-
-                    if (inscN != null)
+                    if (inscA == null)
                     {
-                        boolean cargada;
+                        break;
+                    }
 
-                        do
-                        {
-                            double nota;
+                    System.out.print("Presente? (s/n): ");
+                    String asistencia = sc.nextLine().toLowerCase();
 
-                            do
-                            {
-                                while (!sc.hasNextDouble())
-                                {
-                                    System.out.println("Ingrese una nota válida.");
-                                    sc.nextLine();
-                                }
+                    boolean presente;
 
-                                System.out.print("Nota: ");
-                                nota = sc.nextDouble();
-                                sc.nextLine();
-
-                                if (nota < 0 || nota > 10)
-                                {
-                                    System.out.println("La nota debe estar entre 0 y 10.");
-                                }
-
-                            } while (nota < 0 || nota > 10);
-
-                            cargada = inscN.agregarNota(nota);
-
-                        } while (!cargada);
-
-                        System.out.println("Nota registrada.");
+                    if (asistencia.equals("s"))
+                    {
+                        presente = true;
+                    }
+                    else if (asistencia.equals("n"))
+                    {
+                        presente = false;
                     }
                     else
                     {
-                        System.out.println("Materia no encontrada.");
+                        System.out.println("Opción inválida.");
+                        break;
                     }
+
+                    inscA.registrarAsistencia(presente);
+                    System.out.println("Asistencia registrada.");
+
+                    volverMenu(alumno, sc);
+
+                    break;
+
+                case 4:
+                    InscripcionMateria inscN = null;
+
+                    do
+                    {
+                        System.out.print("Codigo materia (E para volver): ");
+                        String codN = sc.nextLine();
+
+                        // NUEVO
+                        if (codN.equalsIgnoreCase("E"))
+                        {
+                            break;
+                        }
+
+                        inscN = alumno.getInscripcion(codN);
+
+                        if (inscN == null)
+                        {
+                            System.out.println("Materia no encontrada.");
+                        }
+
+                    } while (inscN == null);
+
+                    // NUEVO
+                    if (inscN == null)
+                    {
+                        break;
+                    }
+
+                    boolean cargada;
+
+                    do
+                    {
+                        double nota;
+
+                        do
+                        {
+                            while (!sc.hasNextDouble())
+                            {
+                                System.out.println("Ingrese una nota válida.");
+                                sc.nextLine();
+                            }
+
+                            System.out.print("Nota: ");
+                            nota = sc.nextDouble();
+                            sc.nextLine();
+
+                            if (nota < 0 || nota > 10)
+                            {
+                                System.out.println("La nota debe estar entre 0 y 10.");
+                            }
+
+                        } while (nota < 0 || nota > 10);
+
+                        cargada = inscN.agregarNota(nota);
+
+                    } while (!cargada);
+
+                    System.out.println("Nota registrada.");
 
                     volverMenu(alumno, sc);
 
                     break;
 
                 case 5:
-                    System.out.print("Codigo materia: ");
-                    String codR = sc.nextLine();
+                    InscripcionMateria inscR = null;
 
-                    InscripcionMateria inscR = alumno.getInscripcion(codR);
+                    do
+                    {
+                        System.out.print("Codigo materia (E para volver): ");
+                        String codR = sc.nextLine();
 
-                    if (inscR != null) {
-                        System.out.println("Porcentaje asistencia: " + inscR.getPorcentajeAsistencia());
-                        System.out.println("Condicion: " + inscR.getCondicion());
-                        System.out.println("Promedio: " + inscR.getPromedio());
-                        System.out.println("Aprobada: " + inscR.estaAprobada());
-                    } 
-                    else {
-                        System.out.println("Materia no encontrada.");
+                        if (codR.equalsIgnoreCase("E"))
+                        {
+                            break;
+                        }
+
+                        inscR = alumno.getInscripcion(codR);
+
+                        if (inscR == null)
+                        {
+                            System.out.println("Materia no encontrada.");
+                        }
+
+                    } while (inscR == null);
+
+                    if (inscR == null)
+                    {
+                        break;
                     }
-                    
+
+                    System.out.println("Porcentaje asistencia: " + inscR.getPorcentajeAsistencia());
+                    System.out.println("Condicion: " + inscR.getCondicion());
+                    System.out.println("Promedio: " + inscR.getPromedio());
+                    System.out.println("Aprobada: " + inscR.estaAprobada());
+
                     volverMenu(alumno, sc);
+
                     break;
 
                 case 0:
@@ -455,18 +502,31 @@ public class AutogestionEstudiantil
 
                     System.out.println("Dar de baja de una materia:");
 
-                    System.out.print("Ingrese el código de la materia: ");
-                    String codigoBaja = sc.nextLine();
+                    InscripcionMateria inscBaja = null;
 
-                    if (alumno.getInscripcion(codigoBaja) != null) 
+                    do
                     {
-                        alumno.darDeBaja(codigoBaja);
-                        System.out.println("Materia eliminada correctamente.");
-                    } 
-                    else 
-                    {
-                        System.out.println("Materia no encontrada.");
-                    }
+                        System.out.print("Ingrese el código de la materia (E para volver): ");
+                        String codigoBaja = sc.nextLine();
+
+                        if (codigoBaja.equalsIgnoreCase("E"))
+                        {
+                            break;
+                        }
+
+                        inscBaja = alumno.getInscripcion(codigoBaja);
+
+                        if (inscBaja == null)
+                        {
+                            System.out.println("Materia no encontrada.");
+                        }
+                        else
+                        {
+                            alumno.darDeBaja(codigoBaja);
+                            System.out.println("Materia eliminada correctamente.");
+                        }
+
+                    } while (inscBaja == null);
 
                     break;
 
