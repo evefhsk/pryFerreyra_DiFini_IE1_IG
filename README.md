@@ -8,8 +8,8 @@ El sistema permite gestionar materias, asistencias, calificaciones y reportes ac
 
 ## Integrantes
 
-* Eve
-* Zaira
+* Evelin Ferreyra 
+* Zaira Di Fini
 
 ---
 
