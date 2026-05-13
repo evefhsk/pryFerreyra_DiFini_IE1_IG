@@ -195,6 +195,14 @@ public class AutogestionEstudiantil
             {
                 case 1:
 
+                    System.out.println("TIPO DE INSCRIPCIÓN:");
+                    System.out.println("1. Materia cuatrimestral");
+                    System.out.println("2. Materia anual");
+                    System.out.print("Opción: ");
+
+                    int tipoMateria = sc.nextInt();
+                    sc.nextLine();
+
                     System.out.println("Inscribirse a una materia:");
 
                     System.out.print("NOMBRE: ");
@@ -204,46 +212,28 @@ public class AutogestionEstudiantil
                     String codigo = sc.nextLine();
 
                     // Validación longitud código
-                    if (codigo.length() < 3 || codigo.length() > 10) 
+                    if (codigo.length() < 3 || codigo.length() > 10)
                     {
                         System.out.println("Error: El código debe tener entre 3 y 10 caracteres.");
                         break;
                     }
 
                     // Validación código repetido
-                    if (alumno.getInscripcion(codigo) != null) 
+                    if (alumno.getInscripcion(codigo) != null)
                     {
                         System.out.println("Error: Ya estás inscripto en una materia con ese código.");
-                        break;
-                    }
-
-                    System.out.print("CUATRIMESTRE: ");
-                    int cuatrimestre = sc.nextInt();
-
-                    // Validación cuatrimestre
-                    if (cuatrimestre != 1 && cuatrimestre != 2) 
-                    {
-                        System.out.println("Error: El cuatrimestre debe ser 1 o 2.");
-                        sc.nextLine();
                         break;
                     }
 
                     System.out.print("AÑO: ");
                     int anio = sc.nextInt();
                     sc.nextLine();
-                    
-                    System.out.println("TIPO DE MATERIA:");
-                    System.out.println("1. Cuatrimestral");
-                    System.out.println("2. Anual");
-                    System.out.print("Opción: ");
-
-                    int tipoMateria = sc.nextInt();
-                    sc.nextLine();
 
                     Materia nuevaMateria;
 
-                    if (tipoMateria == 2) {
-
+                    // MATERIA ANUAL
+                    if (tipoMateria == 2)
+                    {
                         MateriaAnual anual = new MateriaAnual(
                                 nombre,
                                 codigo,
@@ -265,8 +255,25 @@ public class AutogestionEstudiantil
                         sc.nextLine();
 
                         nuevaMateria = anual;
+                    }
 
-                    } else {
+                    // MATERIA CUATRIMESTRAL
+                    else if (tipoMateria == 1)
+                    {
+                       int cuatrimestre;
+
+                        do
+                        {
+                            System.out.print("CUATRIMESTRE (1 o 2): ");
+                            cuatrimestre = sc.nextInt();
+                            sc.nextLine();
+
+                            if (cuatrimestre != 1 && cuatrimestre != 2)
+                            {
+                                System.out.println("Error: El cuatrimestre debe ser 1 o 2.");
+                            }
+
+                        } while (cuatrimestre != 1 && cuatrimestre != 2);
 
                         nuevaMateria = new Materia(
                                 nombre,
@@ -274,6 +281,12 @@ public class AutogestionEstudiantil
                                 cuatrimestre,
                                 anio
                         );
+                    }
+
+                    else
+                    {
+                        System.out.println("Opción inválida.");
+                        break;
                     }
 
                     alumno.inscribirse(nuevaMateria);
