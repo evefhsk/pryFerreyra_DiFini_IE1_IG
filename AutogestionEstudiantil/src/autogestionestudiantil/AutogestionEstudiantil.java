@@ -21,7 +21,7 @@ public class AutogestionEstudiantil
         Materia a = new Materia("Lengua", "22034", 2, 2024);
         
        
-
+        int opcion;
         // MENU PRINCIPAL (SOLO ESTRUCTURA INICIAL)
         do {
             System.out.println("\n=== MENU PRINCIPAL ===");
