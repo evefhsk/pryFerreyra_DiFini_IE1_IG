@@ -19,9 +19,12 @@ public class AutogestionEstudiantil
         //Datos de prueba
         Materia m = new Materia("Matematica", "22033", 1, 2024);
         Materia a = new Materia("Lengua", "22034", 2, 2024);
+        
+        System.out.println("====Inscripción de materias de prueba===="); 
+   
         alumno.inscribirse(m);
         alumno.inscribirse(a);
-
+      
         //Objetos de prueba Bonus: 
         
         //Probar funcionamiento BONUS (Clase MateriaCuatrimestral, Rankeable):
@@ -30,11 +33,17 @@ public class AutogestionEstudiantil
         //Objetos de prueba para la clase MateriaCuatrimestral
         Materia m1 = new Materia("Matematica", "MAT1", 1, 2026);
         Materia m2 = new MateriaCuatrimestral("Programacion", "PRO1", 1, 2026);
-
+        System.out.println();
+        
+        System.out.println("====Materias agregadas con polimorfismo====");
+        
         // Polimorfismo, las agrega en la lista
         e.agregarMateria(m1);
         e.agregarMateria(m2);
-
+        
+        System.out.println(); 
+        
+        System.out.println("Búsqueda por código");
         // Llama al metodo buscarPorCodigo de Estudiante
         Materia buscada = e.buscarPorCodigo("PRO1");
 
@@ -144,105 +153,171 @@ public class AutogestionEstudiantil
                     break;
 
                 case 4:
+
                     InscripcionMateria inscN = null;
 
-                    do
-                    {
+                    do {
                         System.out.print("Codigo materia (E para volver): ");
-                        String codN = sc.nextLine();
+                        String codN = sc.nextLine().trim();
 
-                        // NUEVO
-                        if (codN.equalsIgnoreCase("E"))
-                        {
+                        if (codN.equalsIgnoreCase("E")) {
                             break;
                         }
 
                         inscN = alumno.getInscripcion(codN);
 
-                        if (inscN == null)
-                        {
+                        if (inscN == null) {
                             System.out.println("Materia no encontrada.");
                         }
 
                     } while (inscN == null);
 
-                    // NUEVO
-                    if (inscN == null)
-                    {
+                    if (inscN == null) {
                         break;
                     }
 
-                    boolean cargada;
+                    double nota;
 
-                    do
-                    {
-                        double nota;
+                    do {
+                        System.out.print("Nota (0 a 10): ");
 
-                        do
-                        {
-                            while (!sc.hasNextDouble())
-                            {
-                                System.out.println("Ingrese una nota válida.");
-                                sc.nextLine();
-                            }
-
-                            System.out.print("Nota: ");
-                            nota = sc.nextDouble();
+                        while (!sc.hasNextDouble()) {
+                            System.out.println("Ingrese una nota válida.");
                             sc.nextLine();
-
-                            if (nota < 0 || nota > 10)
-                            {
-                                System.out.println("La nota debe estar entre 0 y 10.");
-                            }
-
-                        } while (nota < 0 || nota > 10);
-
-                        cargada = inscN.agregarNota(nota);
-
-                    } while (!cargada);
-
-                    System.out.println("Nota registrada.");
-
-                    volverMenu(alumno, sc);
-
-                    break;
-
-                case 5:
-                    InscripcionMateria inscR = null;
-
-                    do
-                    {
-                        System.out.print("Codigo materia (E para volver): ");
-                        String codR = sc.nextLine();
-
-                        if (codR.equalsIgnoreCase("E"))
-                        {
-                            break;
+                            System.out.print("Nota (0 a 10): ");
                         }
 
-                        inscR = alumno.getInscripcion(codR);
+                        nota = sc.nextDouble();
+                        sc.nextLine();
 
-                        if (inscR == null)
-                        {
-                            System.out.println("Materia no encontrada.");
+                        if (nota < 0 || nota > 10) {
+                            System.out.println("La nota debe estar entre 0 y 10.");
                         }
 
-                    } while (inscR == null);
+                    } while (nota < 0 || nota > 10);
 
-                    if (inscR == null)
-                    {
-                        break;
+                    if (inscN.agregarNota(nota)) {
+                        System.out.println("Nota registrada correctamente.");
+                    } else {
+                        System.out.println("No se pudo registrar la nota.");
                     }
 
-                    System.out.println("Porcentaje asistencia: " + inscR.getPorcentajeAsistencia());
-                    System.out.println("Condicion: " + inscR.getCondicion());
-                    System.out.println("Promedio: " + inscR.getPromedio());
-                    System.out.println("Aprobada: " + inscR.estaAprobada());
-
                     volverMenu(alumno, sc);
 
-                    break;
+                    break; 
+                
+                case 5:
+                    System.out.println("\n=== VER REPORTES ===");
+                    System.out.println("1. Reporte general");
+                    System.out.println("2. Materias críticas");
+                    System.out.println("0. Volver");
+                    System.out.print("Opción: ");
 
+                    int opcionReporte;
+
+                    while (!sc.hasNextInt()) {
+                        System.out.println("Opción inválida.");
+                        sc.nextLine();
+                        System.out.print("Opción: ");
+                    }
+
+                    opcionReporte = sc.nextInt();
+                    sc.nextLine();
+
+                    switch (opcionReporte) {
+                        case 1:
+
+                            System.out.println("\n=== REPORTE GENERAL ===");
+
+                            if (alumno.getMaterias().isEmpty()) {
+                                System.out.println("No hay materias inscriptas.");
+                                volverMenu(alumno, sc);
+                                break;
+                            }
+
+                            int regulares = 0;
+                            int libres = 0;
+                            int aprobadas = 0;
+
+                            for (InscripcionMateria insc : alumno.getMaterias()) {
+                                System.out.println("Materia: " + insc.getMateria().getNombre());
+                                System.out.println("Código: " + insc.getMateria().getCodigo());
+                                System.out.println("Asistencia: " + insc.getPorcentajeAsistencia() + "%");
+                                System.out.println("Promedio: " + insc.getPromedio());
+                                System.out.println("Condición: " + insc.getCondicion());
+
+                                if (insc.getCondicion().equalsIgnoreCase("Regular")) {
+                                    regulares++;
+                                } else {
+                                    libres++;
+                                }
+
+                                if (insc.estaAprobada()) {
+                                    aprobadas++;
+                                }
+
+                                System.out.println("----------------------");
+                            }
+
+                            System.out.println("Promedio general: " + alumno.getPromedioGeneral());
+                            System.out.println("Materias regulares: " + regulares);
+                            System.out.println("Materias libres: " + libres);
+                            System.out.println("Materias aprobadas: " + aprobadas);
+
+                            // BONUS: RANKING
+                            System.out.println("\n=== RANKING DE MATERIAS ===");
+
+                            for (int i = 0; i < alumno.getMaterias().size(); i++) {
+                                for (int j = i + 1; j < alumno.getMaterias().size(); j++) {
+                                    if (alumno.getMaterias().get(i).getPuntajeRanking()
+                                            < alumno.getMaterias().get(j).getPuntajeRanking()) {
+                                        InscripcionMateria aux = alumno.getMaterias().get(i);
+                                        alumno.getMaterias().set(i, alumno.getMaterias().get(j));
+                                        alumno.getMaterias().set(j, aux);
+                                    }
+                                }
+
+                                System.out.println(
+                                        (i + 1) + ". "
+                                        + alumno.getMaterias().get(i).getMateria().getNombre()
+                                        + " | Puntaje: "
+                                        + alumno.getMaterias().get(i).getPuntajeRanking()
+                                );
+                            }
+
+                            volverMenu(alumno, sc);
+                            break;
+
+                        case 2:
+
+                            System.out.println("\n=== MATERIAS CRÍTICAS ===");
+
+                            if (alumno.getMateriasCriticas().isEmpty()) {
+                                System.out.println("No hay materias críticas.");
+                            } else {
+                                for (InscripcionMateria critica : alumno.getMateriasCriticas()) {
+                                    System.out.println("Materia: " + critica.getMateria().getNombre());
+                                    System.out.println("Código: " + critica.getMateria().getCodigo());
+                                    System.out.println("Asistencia: " + critica.getPorcentajeAsistencia() + "%");
+                                    System.out.println("Promedio: " + critica.getPromedio());
+                                    System.out.println("Condición: " + critica.getCondicion());
+                                    System.out.println("----------------------");
+                                }
+                            }
+
+                            volverMenu(alumno, sc);
+                            break;
+
+                        case 0:
+                            break;
+
+                        default:
+                            System.out.println("Opción inválida.");
+                            break;
+                    }
+
+                    break;
+                    
                 case 0:
                     System.out.println("Hasta luego!");
                     break;
@@ -284,72 +359,72 @@ public class AutogestionEstudiantil
  
             switch (opcionMateria) 
             {
+                
                 case 1:
 
                     System.out.println("TIPO DE INSCRIPCIÓN:");
                     System.out.println("1. Materia cuatrimestral");
                     System.out.println("2. Materia anual");
-                   
+
                     int tipoMateria;
 
-                    do
-                    {
-                        while (!sc.hasNextInt())
-                        {
+                    do {
+                        System.out.print("Opción: ");
+
+                        while (!sc.hasNextInt()) {
                             System.out.println("Ingrese una opción válida.");
                             sc.nextLine();
+                            System.out.print("Opción: ");
                         }
 
-                        System.out.print("Opción: ");
                         tipoMateria = sc.nextInt();
-                        sc.nextLine();
+                        sc.nextLine(); // LIMPIA BUFFER
 
-                        if (tipoMateria != 1 && tipoMateria != 2)
-                        {
+                        if (tipoMateria == 1) {
+                            System.out.println("Seleccionaste: Materia cuatrimestral");
+                        } else if (tipoMateria == 2) {
+                            System.out.println("Seleccionaste: Materia anual");
+                        } else {
                             System.out.println("Debe elegir 1 o 2.");
                         }
 
-                    } 
-                    while (tipoMateria != 1 && tipoMateria != 2); 
+                    } while (tipoMateria != 1 && tipoMateria != 2);
 
                     System.out.println("Inscribirse a una materia:");
 
                     System.out.print("NOMBRE: ");
-                    String nombre = sc.nextLine();
+                    String nombre = sc.nextLine().trim();
 
                     System.out.print("CODIGO: ");
-                    String codigo = sc.nextLine();
+                    String codigo = sc.nextLine().trim();
 
                     // Validación longitud código
-                    if (codigo.length() < 3 || codigo.length() > 10)
-                    {
+                    if (codigo.length() < 3 || codigo.length() > 10) {
                         System.out.println("Error: El código debe tener entre 3 y 10 caracteres.");
                         break;
                     }
 
                     // Validación código repetido
-                    if (alumno.getInscripcion(codigo) != null)
-                    {
+                    if (alumno.getInscripcion(codigo) != null) {
                         System.out.println("Error: Ya estás inscripto en una materia con ese código.");
                         break;
                     }
 
                     int anio;
 
-                    do
-                    {
-                        while (!sc.hasNextInt())
-                        {
+                    do {
+                        System.out.print("AÑO: ");
+
+                        while (!sc.hasNextInt()) {
                             System.out.println("Ingrese un año válido.");
                             sc.nextLine();
+                            System.out.print("AÑO: ");
                         }
 
-                        System.out.print("AÑO: ");
                         anio = sc.nextInt();
-                        sc.nextLine();
+                        sc.nextLine(); // LIMPIA BUFFER
 
-                        if (anio <= 0)
-                        {
+                        if (anio <= 0) {
                             System.out.println("El año debe ser mayor a 0.");
                         }
 
@@ -357,121 +432,120 @@ public class AutogestionEstudiantil
 
                     Materia nuevaMateria;
 
+
                     // MATERIA ANUAL
-                    if (tipoMateria == 2)
-{
-                        MateriaAnual anual = new MateriaAnual(
-                                nombre,
-                                codigo,
-                                anio
-                        );
+
+                    if (tipoMateria == 2) {
+                        MateriaAnual anual = new MateriaAnual(nombre, codigo, anio);
 
                         double nota1;
+                        do {
+                            System.out.print("Nota 1° cuatrimestre: ");
 
-                        do
-                        {
-                            while (!sc.hasNextDouble())
-                            {
+                            while (!sc.hasNextDouble()) {
                                 System.out.println("Ingrese una nota válida.");
                                 sc.nextLine();
+                                System.out.print("Nota 1° cuatrimestre: ");
                             }
 
-                            System.out.print("Nota 1° cuatrimestre: ");
                             nota1 = sc.nextDouble();
 
-                            if (nota1 < 0 || nota1 > 10)
-                            {
+                            if (nota1 < 0 || nota1 > 10) {
                                 System.out.println("La nota debe estar entre 0 y 10.");
                             }
 
                         } while (nota1 < 0 || nota1 > 10);
 
+                        sc.nextLine();
+
                         anual.setNotaPrimerCuatrimestre(nota1);
 
                         double nota2;
+                        do {
+                            System.out.print("Nota 2° cuatrimestre: ");
 
-                        do
-                        {
-                            while (!sc.hasNextDouble())
-                            {
+                            while (!sc.hasNextDouble()) {
                                 System.out.println("Ingrese una nota válida.");
                                 sc.nextLine();
+                                System.out.print("Nota 2° cuatrimestre: ");
                             }
 
-                            System.out.print("Nota 2° cuatrimestre: ");
                             nota2 = sc.nextDouble();
 
-                            if (nota2 < 0 || nota2 > 10)
-                            {
+                            if (nota2 < 0 || nota2 > 10) {
                                 System.out.println("La nota debe estar entre 0 y 10.");
                             }
 
                         } while (nota2 < 0 || nota2 > 10);
 
+                        sc.nextLine();
+
                         anual.setNotaSegundoCuatrimestre(nota2);
 
                         double asistencia1;
+                        do {
+                            System.out.print("Asistencia 1° cuatrimestre: ");
 
-                        do
-                        {
-                            while (!sc.hasNextDouble())
-                            {
+                            while (!sc.hasNextDouble()) {
                                 System.out.println("Ingrese un porcentaje válido.");
                                 sc.nextLine();
+                                System.out.print("Asistencia 1° cuatrimestre: ");
                             }
 
-                            System.out.print("Asistencia 1° cuatrimestre: ");
                             asistencia1 = sc.nextDouble();
 
-                            if (asistencia1 < 0 || asistencia1 > 100)
-                            {
+                            if (asistencia1 < 0 || asistencia1 > 100) {
                                 System.out.println("La asistencia debe estar entre 0 y 100.");
                             }
 
                         } while (asistencia1 < 0 || asistencia1 > 100);
 
+                        sc.nextLine();
+
                         anual.setAsistenciaPrimerCuatrimestre(asistencia1);
 
                         double asistencia2;
+                        do {
+                            System.out.print("Asistencia 2° cuatrimestre: ");
 
-                        do
-                        {
-                            while (!sc.hasNextDouble())
-                            {
+                            while (!sc.hasNextDouble()) {
                                 System.out.println("Ingrese un porcentaje válido.");
                                 sc.nextLine();
+                                System.out.print("Asistencia 2° cuatrimestre: ");
                             }
 
-                            System.out.print("Asistencia 2° cuatrimestre: ");
                             asistencia2 = sc.nextDouble();
 
-                            if (asistencia2 < 0 || asistencia2 > 100)
-                            {
+                            if (asistencia2 < 0 || asistencia2 > 100) {
                                 System.out.println("La asistencia debe estar entre 0 y 100.");
                             }
 
                         } while (asistencia2 < 0 || asistencia2 > 100);
 
-                        anual.setAsistenciaSegundoCuatrimestre(asistencia2);
-
                         sc.nextLine();
 
+                        anual.setAsistenciaSegundoCuatrimestre(asistencia2);
+
                         nuevaMateria = anual;
-                    }
-
+                    } 
                     // MATERIA CUATRIMESTRAL
-                    else if (tipoMateria == 1)
-                    {
-                       int cuatrimestre;
 
-                        do
-                        {
+                    else {
+                        int cuatrimestre;
+
+                        do {
                             System.out.print("CUATRIMESTRE (1 o 2): ");
-                            cuatrimestre = sc.nextInt();
-                            sc.nextLine();
 
-                            if (cuatrimestre != 1 && cuatrimestre != 2)
-                            {
+                            while (!sc.hasNextInt()) {
+                                System.out.println("Ingrese una opción válida.");
+                                sc.nextLine();
+                                System.out.print("CUATRIMESTRE (1 o 2): ");
+                            }
+
+                            cuatrimestre = sc.nextInt();
+                            sc.nextLine(); // LIMPIA BUFFER
+
+                            if (cuatrimestre != 1 && cuatrimestre != 2) {
                                 System.out.println("Error: El cuatrimestre debe ser 1 o 2.");
                             }
 
@@ -485,51 +559,38 @@ public class AutogestionEstudiantil
                         );
                     }
 
-                    else
-                    {
-                        System.out.println("Opción inválida.");
-                        break;
-                    }
-
                     alumno.inscribirse(nuevaMateria);
 
                     System.out.println("Materia registrada correctamente:");
                     nuevaMateria.mostrarResumen();
 
-                    break;
-
+                    break; 
                 case 2:
 
                     System.out.println("Dar de baja de una materia:");
 
                     InscripcionMateria inscBaja = null;
 
-                    do
-                    {
+                    do {
                         System.out.print("Ingrese el código de la materia (E para volver): ");
-                        String codigoBaja = sc.nextLine();
+                        String codigoBaja = sc.nextLine().trim();
 
-                        if (codigoBaja.equalsIgnoreCase("E"))
-                        {
+                        if (codigoBaja.equalsIgnoreCase("E")) {
                             break;
                         }
 
                         inscBaja = alumno.getInscripcion(codigoBaja);
 
-                        if (inscBaja == null)
-                        {
+                        if (inscBaja == null) {
                             System.out.println("Materia no encontrada.");
-                        }
-                        else
-                        {
+                        } else {
                             alumno.darDeBaja(codigoBaja);
-                            System.out.println("Materia eliminada correctamente.");
                         }
-
+ 
                     } while (inscBaja == null);
 
                     break;
-
+                    
                 case 3:
 
                     if (alumno.getMaterias().isEmpty()) 

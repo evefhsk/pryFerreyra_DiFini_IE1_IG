@@ -52,8 +52,7 @@ public class Estudiante extends PersonaAcademica implements Consultable{
 
         InscripcionMateria nueva = new InscripcionMateria(m);
         materias.add(nueva);
-
-        System.out.println("Inscripción realizada.");
+        System.out.println("La Materia " + m.getNombre() + " fue inscripta correctamente.");
     }
 
     public void darDeBaja(String codigo) {
@@ -86,7 +85,7 @@ public class Estudiante extends PersonaAcademica implements Consultable{
     public void agregarMateria(Materia m) 
     {
         materiasPolimorfismo.add(m);
-        System.out.println("Materia agregada"); 
+        System.out.println("Materia agregada: " + m.getNombre()); 
     }
     
     //Para buscar por codigo
@@ -148,26 +147,7 @@ public class Estudiante extends PersonaAcademica implements Consultable{
         System.out.println("Año de ingreso: " + anioIngreso);
         System.out.println("Promedio general: " + getPromedioGeneral());
     
-        System.out.println("\n=== RANKING DE MATERIAS ===");
-
-        for (int i = 0; i < materias.size(); i++) {
-
-            for (int j = i + 1; j < materias.size(); j++) {
-
-                if (materias.get(i).getPuntajeRanking() < materias.get(j).getPuntajeRanking()) {
-
-                    InscripcionMateria aux = materias.get(i);
-                    materias.set(i, materias.get(j));
-                    materias.set(j, aux);
-                }
-            } 
-
-            System.out.println(
-                    materias.get(i).getMateria().getNombre()
-                    + " | Puntaje: "
-                    + materias.get(i).getPuntajeRanking()
-            );
-        }
+        
     }
 
    
