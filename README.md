@@ -8,8 +8,10 @@ El sistema permite gestionar materias, asistencias, calificaciones y reportes ac
 
 ## Integrantes
 
-* Evelin Ferreyra 
+* Evelin Ferreyra
+  DNI: 47993248
 * Zaira Di Fini
+  DNI: 47350879
 
 ---
 
